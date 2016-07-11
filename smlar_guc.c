@@ -64,7 +64,7 @@ initSmlarGUC()
 			"Lower threshold of array's similarity",
 			"Array's with similarity lower than threshold are not similar by % operation",
 			&smlar_limit,
-			0.6, 
+			0.6,
 			0.0,
 			1e10,
 			PGC_USERSET,
@@ -141,10 +141,10 @@ initSmlarGUC()
 			NULL
 	);
 
-	smlar_guc_inited = true;	
+	smlar_guc_inited = true;
 }
 
-double 
+double
 getOneAdd(void)
 {
 	if (!smlar_guc_inited)
@@ -209,9 +209,9 @@ set_smlar_limit(PG_FUNCTION_ARGS)
 	/* init smlar guc */
 	initSmlarGUC();
 
-	sprintf(buf,"%f", nlimit);	
-	set_config_option("smlar.threshold", buf, 
-						PGC_USERSET, PGC_S_SESSION ,GUC_ACTION_SET, true, 0);
+	sprintf(buf,"%f", nlimit);
+	set_config_option("smlar.threshold", buf,
+                          PGC_USERSET, PGC_S_SESSION ,GUC_ACTION_SET, true, 0, false);
 	PG_RETURN_FLOAT4((float4)GetSmlarLimit());
 }
 
@@ -222,4 +222,3 @@ show_smlar_limit(PG_FUNCTION_ARGS)
 {
 	PG_RETURN_FLOAT4((float4)GetSmlarLimit());
 }
-

@@ -66,12 +66,12 @@ CREATE OR REPLACE FUNCTION inarray(anyarray, anyelement, float4, float4)
 CREATE OR REPLACE FUNCTION gsmlsign_in(cstring)
 	RETURNS gsmlsign
 	AS 'MODULE_PATHNAME'
-	LANGUAGE C STRICT;
+	LANGUAGE C STRICT IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION gsmlsign_out(gsmlsign)
 	RETURNS cstring
 	AS 'MODULE_PATHNAME'
-	LANGUAGE C STRICT;
+	LANGUAGE C STRICT IMMUTABLE;
 
 CREATE TYPE gsmlsign (
 	INTERNALLENGTH = -1,
@@ -398,7 +398,7 @@ AS
 	FUNCTION	7	gsmlsign_same (gsmlsign, gsmlsign, internal),
 STORAGE         gsmlsign;
 
---no hash 
+--no hash
 --CREATE OPERATOR CLASS _bit_sml_ops
 --FOR TYPE _bit USING gist
 --AS
@@ -710,4 +710,3 @@ AS
 	FUNCTION    3   smlarqueryarrayextract(anyarray, internal, internal),
 	FUNCTION    4   smlararrayconsistent(internal, internal, anyarray),
 	STORAGE     numeric;
-
