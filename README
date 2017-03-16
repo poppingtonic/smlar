@@ -8,8 +8,8 @@ float4 smlar(anyarray, anyarray, bool useIntersect)
 	   see an exmaples in sql/composite_int4.sql or sql/composite_text.sql
 
 float4 smlar( anyarray a, anyarray b, text formula );
-	- computes similary of two arrays by given formula, arrays should 
-	be the same type. 
+	- computes similary of two arrays by given formula, arrays should
+	be the same type.
 	Predefined variables in formula:
 	  N.i	- number of common elements in both array (intersection)
 	  N.a   - number of uniqueelements in first array
@@ -28,7 +28,7 @@ float4 show_smlar_limit()  - deprecated
 float4 set_smlar_limit(float4) - deprecated
 	- sets the limit for % operation
 
-Use instead of show_smlar_limit/set_smlar_limit GUC variable 
+Use instead of show_smlar_limit/set_smlar_limit GUC variable
 smlar.threshold (see below)
 
 
@@ -43,13 +43,13 @@ float4 inarray(anyarray, anyelement)
 	  and 1.0 in opposite case
 
 float4 inarray(anyarray, anyelement, float4, float4)
-	- returns fourth argument if second argument does not present in 
+	- returns fourth argument if second argument does not present in
 	  a first one and third argument in opposite case
 
 GUC configuration variables:
 
 smlar.threshold  FLOAT
-	Array's with similarity lower than threshold are not similar 
+	Arrays with similarity lower than threshold are not similar
 	by % operation
 
 smlar.persistent_cache BOOL
@@ -59,7 +59,7 @@ smlar.type  STRING
 	Type of similarity formula: cosine(default), tfidf, overlap
 
 smlar.stattable	STRING
-	Name of table stored set-wide statistic. Table should be 
+	Name of table stored set-wide statistic. Table should be
 	defined as
 	CREATE TABLE table_name (
 		value   data_type UNIQUE,
@@ -88,9 +88,9 @@ smlar.threshold = 0.6  #or any other value > 0 and < 1
 and other smlar.* variables
 
 GiST/GIN support for % and  && operations for:
-  Array Type   |  GIN operator class  | GiST operator class  
+  Array Type   |  GIN operator class  | GiST operator class
 ---------------+----------------------+----------------------
- bit[]         | _bit_sml_ops         | 
+ bit[]         | _bit_sml_ops         |
  bytea[]       | _bytea_sml_ops       | _bytea_sml_ops
  char[]        | _char_sml_ops        | _char_sml_ops
  cidr[]        | _cidr_sml_ops        | _cidr_sml_ops
@@ -103,7 +103,7 @@ GiST/GIN support for % and  && operations for:
  int8[]        | _int8_sml_ops        | _int8_sml_ops
  interval[]    | _interval_sml_ops    | _interval_sml_ops
  macaddr[]     | _macaddr_sml_ops     | _macaddr_sml_ops
- money[]       | _money_sml_ops       | 
+ money[]       | _money_sml_ops       |
  numeric[]     | _numeric_sml_ops     | _numeric_sml_ops
  oid[]         | _oid_sml_ops         | _oid_sml_ops
  text[]        | _text_sml_ops        | _text_sml_ops
@@ -111,6 +111,5 @@ GiST/GIN support for % and  && operations for:
  timestamp[]   | _timestamp_sml_ops   | _timestamp_sml_ops
  timestamptz[] | _timestamptz_sml_ops | _timestamptz_sml_ops
  timetz[]      | _timetz_sml_ops      | _timetz_sml_ops
- varbit[]      | _varbit_sml_ops      | 
+ varbit[]      | _varbit_sml_ops      |
  varchar[]     | _varchar_sml_ops     | _varchar_sml_ops
-
